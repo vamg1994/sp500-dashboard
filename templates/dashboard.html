@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SP500 Dashboard</title>
+    <!-- Include Plotly library for interactive charts -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Link to custom CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Main heading with dynamic company name -->
+        <h1>SP500 Dashboard - <span id="company_name">AAPL</span></h1>
+
+        <!-- LinkedIn profile link with profile picture -->
+        <a href="https://www.linkedin.com/in/vamadrid" target="_blank" class="profile-link">
+            <img src="{{ url_for('static', filename='pp.png') }}" alt="Profile Picture" class="profile-picture">
+        </a>
+
+        <!-- Control panel for user interactions -->
+        <div class="controls">
+            <!-- Dropdown for stock symbol selection -->
+            <select id="symbol">
+                {% for ticker in tickers %}
+                    <option value="{{ ticker }}"{% if ticker == 'AAPL' %} selected{% endif %}>{{ ticker }}</option>
+                {% endfor %}
+            </select>
+
+            <!-- Start date input -->
+            <div class="date-input">
+                <label for="start_date" class="visually-hidden">Start date</label>
+                <input type="date" id="start_date" title="Start date">
+            </div>
+
+            <!-- End date input -->
+            <div class="date-input">
+                <label for="end_date" class="visually-hidden">End date</label>
+                <input type="date" id="end_date" title="End date">
+            </div>
+
+            <!-- Filter button to update charts -->
+            <button id="filter">Filter</button>
+
+            <!-- Export button to download CSV data -->
+            <button id="export">Export CSV</button>
+        </div>
+
+        <!-- Container for all charts -->
+        <div class="graphs">
+            <!-- Individual chart containers -->
+            <div id="stock_price" class="graph"></div>
+            <div id="percent_change" class="graph"></div>
+            <div id="moving_averages" class="graph"></div>
+            <div id="pe_ratio" class="graph"></div>
+            <div id="garman_klass" class="graph"></div>
+            <div id="rsi" class="graph"></div>
+            <div id="bollinger_bands" class="graph"></div>
+            <div id="atr" class="graph"></div>
+            <div id="dollar_volume" class="graph"></div>
+        </div>
+    </div>
+
+    <!-- Include custom JavaScript file for dashboard functionality -->
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>
