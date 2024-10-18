@@ -1,5 +1,3 @@
-import yfinance as yf
-import pandas as pd
 
 # Get S&P 500 tickers
 def get_tickers():

@@ -1,5 +1,3 @@
-import pandas as pd
-import numpy as np
 
 def calculate_garman_klass_volatility(data):
     """
