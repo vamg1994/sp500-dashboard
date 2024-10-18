@@ -10,3 +10,9 @@ venv/
 
 # Ignore json files
 *.json
+
+# Ignore ipynb files
+*.ipynb
+
+
+
